@@ -1,0 +1,19 @@
+Traccia approssimata:
+
+1. Si illustrino i meccanismi Win32 di comunicazione tra processi.
+
+2. Si dica quanti thread sono coinvolti nell'esecuzione e perché: (non mi ricordo esattamente il codice, ma era all'incirca così)
+template <typename Iter>
+int fibonacci(int n) {
+  if (n == 0)
+    return 0;
+  if (n == 1)
+    return 1;
+  auto handle = std::async(std::launch::async, fibonacci, n - 1);
+  return (fibonacci(n - 2) +  handle.get());
+}
+int main() {
+  fibonacci(5);
+}
+
+3. Un processo, che è un server Web, ogni tanto termina a causa di qualche errore imprevisto. Scrivi un programma Win32 che faccia ripartire quel processo ogni volta che termina, tranne nel caso in cui esiste il file "C:\..." che indica che Windows sta arrestando il sistema e quindi è normale che tutti i processi terminino.
